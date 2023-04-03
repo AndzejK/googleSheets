@@ -63,8 +63,7 @@ for cell in cells:
     cell.row,cell.col # get the lines with cordinates
 
 # find a cell when is known just partial info, like the beginning of word/number
-
-reg=re.compile(r"10")
+reg=re.compile(r"10") #finds cells which begin with "10"
 cells=worksheet2_name.findall(reg)
 for cell in cells:
-    print(cell.row,cell.col)
+    cell.row,cell.col # prints line all found cordinates
