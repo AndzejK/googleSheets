@@ -15,6 +15,7 @@ I found in JSON file as "client_email"
 11. I gave permissions "Editor" to this email/service
 """
 import gspread
+import re
 # Establishing connection to Google Sheet, adding JSON <location/name> - API_key_project_Python.json
 gc=gspread.service_account("API_key_project_Python.json")
 # all sheets/entire sheet
@@ -46,4 +47,24 @@ a_column=worksheet2_name.get_values("A1:A23") # not the best method of getting c
 
 # Get a column by INDEX
 a_column=worksheet2_name.col_values(1)[1:] # based on an index, starts from 1 but if I don't want the header then I can applu slice method and start from where I want to
-print(a_row_by_index)
+
+# Get just a cell value
+cell_d5=worksheet2_name.acell("D5").value
+
+# Search for a cell
+cellx=worksheet2_name.find("10") # will get <Cell R10C4 '10'> as the outcome
+cellx.row,cellx.col # I get cell's cordinates: 10th row and 4th column - JUST one cell the 1st found
+
+# Find all/many cells that have "x" value
+cells=worksheet2_name.findall("-61") # outcome: [<Cell R10C5 '-61'>, <Cell R15C5 '-61'>]
+
+# get cordinates of these cells
+for cell in cells:
+    cell.row,cell.col # get the lines with cordinates
+
+# find a cell when is known just partial info, like the beginning of word/number
+
+reg=re.compile(r"10")
+cells=worksheet2_name.findall(reg)
+for cell in cells:
+    print(cell.row,cell.col)
