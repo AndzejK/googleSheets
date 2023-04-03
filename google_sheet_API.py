@@ -31,4 +31,19 @@ data_sheet_1=worksheet1_id.get_all_records()
 
 # fetch data from the worksheet2_name object
 data_sheet_2=worksheet2_name.get_all_records()
-print(data_sheet_2[10])
+
+# Get the specific values/cells - One row
+data_sheet_2=worksheet2_name.get_values("A7:F7") #data type List in the List
+
+# Get more than one row (>1), let's say 4 rows = Select 1st Cell and the Last Cell :)
+data_sheet_2=worksheet2_name.get_values("A7:F10") # Data type - List which has multiple list and our case 4 list in one List
+
+# Get ROW by INDEX
+a_row_by_index=worksheet2_name.row_values(2)
+
+# Get a column by  CELLS
+a_column=worksheet2_name.get_values("A1:A23") # not the best method of getting columns
+
+# Get a column by INDEX
+a_column=worksheet2_name.col_values(1)[1:] # based on an index, starts from 1 but if I don't want the header then I can applu slice method and start from where I want to
+print(a_row_by_index)
